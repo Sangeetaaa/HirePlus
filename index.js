@@ -1,4 +1,6 @@
 const express = require('express');
+const req = require('express/lib/request');
+const res = require('express/lib/response');
 const Datastore = require('nedb');
 require('dotenv').config();
 const app = express();
@@ -28,7 +30,25 @@ app.post('/api', (request, response) => {
   const data = request.body;
   const timestamp = Date.now();
   data.timestamp = timestamp;
-  database.insert(data);
-  console.log(data);
-  
+  database.insert(data)
+  response.send(data)
+});
+
+
+const courses=[
+  {id:1,name:"sangeeta"},
+  {id:1,name:"sangeeta1"},
+  {id:1,name:"sangeeta2"}
+];
+
+
+
+app.post('/api/course', (request, response) => {
+  const course = 
+  {
+    id: courses.length+1,
+    name: request.body.name
+  }
+  courses.push(course)
+  response.send(course)
 });
