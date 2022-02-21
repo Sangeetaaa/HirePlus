@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+  <h1> Data selfie app </h1>
+  <script>
+      getData();
+      async function getData()
+      {
+          const response = await fetch('/api');
+          const data = await response.json();
+          console.log(data);
+
+          for(item of data)
+          {
+            console.log("check data here" +item);
+              const root = document.createElement('div');
+              const username = document.createElement('div');
+              const password = document.createElement('div');
+              const emailid = document.createElement('div');
+
+           
+              username.textContent = `username : ${item.uname}`;
+              password.textContent = `password : ${item.psw}`;
+              emailid.textContent = `email : ${item.mail}`;
+
+              root.append(username,password,emailid);
+              document.body.append(root);
+          }
+      }
+    
+  </script>
+  </body>
+</html>
